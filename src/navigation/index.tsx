@@ -6,6 +6,7 @@ import { View, Text } from "react-native";
 import { ROUTES } from "../utils/constants/routes";
 import LandingScreen from "../screens/onboarding/LandingScreen";
 import RegistrationScreen from "../screens/registration/RegistrationForm";
+import RegistrationStatusScreen from "../screens/registration/RegistrationStatusScreen";
 import ProfessionalDetailsScreen from "../screens/onboarding/ProfessionalDetailsScreen";
 import SecurityPreferencesScreen from "../screens/onboarding/SecurityPreferencesScreen";
 import DashboardScreen from "../screens/dashboard/DashboardScreen";
@@ -52,6 +53,10 @@ const AppNavigator = () => {
         <Stack.Screen 
           name={ROUTES.Registration} 
           component={RegistrationScreen}
+        />
+        <Stack.Screen 
+          name={ROUTES.RegistrationStatus} 
+          component={RegistrationStatusScreen}
         />
         <Stack.Screen 
           name={ROUTES.ProfessionalDetails} 

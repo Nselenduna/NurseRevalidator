@@ -3,6 +3,7 @@ export const ROUTES = {
   Landing: "Landing",
   Onboarding: "Onboarding",
   Registration: "Registration",
+  RegistrationStatus: "RegistrationStatus",
   ProfessionalDetails: "ProfessionalDetails",
   SecurityPreferences: "SecurityPreferences",
   Login: "Login",

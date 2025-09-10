@@ -114,7 +114,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ navigation }) => {
       icon: 'registration',
       title: 'Registration Status',
       subtitle: 'View your NMC registration and renewal details',
-      onPress: () => navigation.navigate(ROUTES.Registration as never),
+      onPress: () => navigation.navigate(ROUTES.RegistrationStatus as never),
       badge: user && !user.revalidationDate ? 1 : undefined,
     },
     {
@@ -149,7 +149,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ navigation }) => {
     
     switch (nextTask.type) {
       case 'revalidation':
-        navigation.navigate(ROUTES.Registration as never);
+        navigation.navigate(ROUTES.RegistrationStatus as never);
         break;
       case 'cpd':
         navigation.navigate(ROUTES.CPD as never);
