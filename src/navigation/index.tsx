@@ -10,6 +10,7 @@ import RegistrationStatusScreen from "../screens/registration/RegistrationStatus
 import ProfessionalDetailsScreen from "../screens/onboarding/ProfessionalDetailsScreen";
 import SecurityPreferencesScreen from "../screens/onboarding/SecurityPreferencesScreen";
 import DashboardScreen from "../screens/dashboard/DashboardScreen";
+import CPDTrackerScreen from "../screens/cpd/CPDTrackerScreen";
 
 // Create placeholder screens for routes that aren't implemented yet
 const PlaceholderScreen = ({ route }: any) => (
@@ -80,7 +81,7 @@ const AppNavigator = () => {
         />
         <Stack.Screen 
           name={ROUTES.CPD} 
-          component={PlaceholderScreen}
+          component={CPDTrackerScreen}
         />
         <Stack.Screen 
           name={ROUTES.Standards} 
