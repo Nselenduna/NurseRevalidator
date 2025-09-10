@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/lloyd/OneDrive/Pictures/Screenshots/**)",
+      "Bash(npx tsc:*)",
+      "Bash(npx expo install:*)",
+      "Bash(npm run start:*)",
+      "Bash(rm:*)",
+      "Bash(npx expo start:*)",
+      "Bash(taskkill:*)",
+      "Bash(npm start)",
+      "Read(//c/Users/lloyd/Downloads/**)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
