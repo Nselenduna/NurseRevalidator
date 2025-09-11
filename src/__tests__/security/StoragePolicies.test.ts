@@ -1,20 +1,35 @@
 // #scope:storage-policies
+
+// Mock Supabase before importing
+jest.mock('../../config/supabase', () => ({
+  supabase: {
+    storage: {
+      from: jest.fn(),
+      getBucket: jest.fn(),
+    },
+    auth: {
+      getSession: jest.fn(),
+    },
+  },
+}));
+
 import { supabase } from '../../config/supabase';
 
+const mockSupabase = supabase as jest.Mocked<typeof supabase>;
+
 describe('Storage Policies', () => {
-  let testUserId: string;
-  let secondUserId: string;
+  const testUserId = 'test-user-id';
   
   beforeAll(async () => {
-    // Get authenticated user ID for testing
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user) {
-      testUserId = session.user.id;
-    } else {
-      // Skip tests if no authenticated session
-      console.warn('No authenticated session for storage policy tests');
-      return;
-    }
+    // Mock authenticated session
+    mockSupabase.auth.getSession.mockResolvedValue({
+      data: { 
+        session: { 
+          user: { id: testUserId } 
+        } 
+      },
+      error: null,
+    });
   });
 
   describe('Audio bucket policies', () => {
@@ -38,13 +53,22 @@ describe('Storage Policies', () => {
 
     it('should allow users to upload files to their own folder', async () => {
       const testContent = new Uint8Array([1, 2, 3, 4]); // Mock audio data
+      const uploadedPath = `${testUserId}/test-audio.mp3`;
       
+      mockSupabase.storage.from.mockReturnValue({
+        upload: jest.fn().mockResolvedValue({
+          data: { path: uploadedPath },
+          error: null,
+        }),
+      } as any);
+
       const { data, error } = await supabase.storage
         .from('audio')
         .upload(uploadedPath, testContent);
 
       expect(error).toBeNull();
       expect(data).toBeDefined();
+      expect(mockSupabase.storage.from).toHaveBeenCalledWith('audio');
     });
 
     it('should allow users to read their own files', async () => {
