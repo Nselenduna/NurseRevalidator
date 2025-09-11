@@ -1,53 +1,38 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// Keys for AsyncStorage
-const ONBOARDING_COMPLETE_KEY = 'onboardingComplete';
-const FIRST_RUN_AT_KEY = 'firstRunAt';
+const ONBOARDING_KEY = 'onboarding_complete';
 
 /**
- * Gets the onboarding completion status
- * @returns Promise with boolean value indicating if onboarding is complete
+ * Check if user has completed onboarding
  */
 export const getOnboardingComplete = async (): Promise<boolean> => {
   try {
-    const value = await AsyncStorage.getItem(ONBOARDING_COMPLETE_KEY);
+    const value = await AsyncStorage.getItem(ONBOARDING_KEY);
     return value === 'true';
-  } catch (e) {
-    console.error('Failed to get onboarding status:', e);
+  } catch (error) {
+    console.error('Error getting onboarding status:', error);
     return false;
   }
 };
 
 /**
- * Sets the onboarding completion status
- * @param value Boolean value to set for onboarding completion
- * @returns Promise that resolves when the value is set
+ * Mark onboarding as complete
  */
-export const setOnboardingComplete = async (value: boolean): Promise<void> => {
+export const setOnboardingComplete = async (complete: boolean = true): Promise<void> => {
   try {
-    await AsyncStorage.setItem(ONBOARDING_COMPLETE_KEY, value.toString());
-    
-    // If onboarding is being completed for the first time, record the timestamp
-    if (value === true) {
-      const firstRunExists = await AsyncStorage.getItem(FIRST_RUN_AT_KEY);
-      if (!firstRunExists) {
-        await AsyncStorage.setItem(FIRST_RUN_AT_KEY, new Date().toISOString());
-      }
-    }
-  } catch (e) {
-    console.error('Failed to save onboarding status:', e);
+    await AsyncStorage.setItem(ONBOARDING_KEY, complete.toString());
+  } catch (error) {
+    console.error('Error setting onboarding status:', error);
   }
 };
 
 /**
- * Gets the first run timestamp
- * @returns Promise with ISO string date when app was first run
+ * Clear onboarding status (for testing or reset)
  */
-export const getFirstRunTimestamp = async (): Promise<string | null> => {
+export const clearOnboardingStatus = async (): Promise<void> => {
   try {
-    return await AsyncStorage.getItem(FIRST_RUN_AT_KEY);
-  } catch (e) {
-    console.error('Failed to get first run timestamp:', e);
-    return null;
+    await AsyncStorage.removeItem(ONBOARDING_KEY);
+  } catch (error) {
+    console.error('Error clearing onboarding status:', error);
   }
 };

@@ -101,7 +101,10 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ navigation }) => {
 
   const handleLogoPress = async () => {
     if (!isReducedMotion) {
-      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      // Special haptic pattern for heartbeat easter egg
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      setTimeout(() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light), 150);
+      setTimeout(() => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success), 300);
     }
     // Easter egg - scroll to top with fun animation
     scrollViewRef.current?.scrollTo({ y: 0, animated: true });
@@ -114,7 +117,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ navigation }) => {
       icon: 'registration',
       title: 'Registration Status',
       subtitle: 'View your NMC registration and renewal details',
-      onPress: () => navigation.navigate(ROUTES.Registration as never),
+      onPress: () => navigation.navigate(ROUTES.RegistrationStatus as never),
       badge: user && !user.revalidationDate ? 1 : undefined,
     },
     {
@@ -149,7 +152,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ navigation }) => {
     
     switch (nextTask.type) {
       case 'revalidation':
-        navigation.navigate(ROUTES.Registration as never);
+        navigation.navigate(ROUTES.RegistrationStatus as never);
         break;
       case 'cpd':
         navigation.navigate(ROUTES.CPD as never);

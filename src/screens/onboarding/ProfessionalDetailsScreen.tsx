@@ -186,7 +186,15 @@ export default function ProfessionalDetailsScreen() {
   const handleFieldChange = (field: keyof ProfessionalData, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     
-    if (touched.has(field)) {
+    // Clear error when field has valid value, regardless of touched state
+    if (value) {
+      const error = validateField(field, value);
+      if (!error) {
+        setErrors(prev => ({ ...prev, [field]: undefined }));
+      } else if (touched.has(field)) {
+        setErrors(prev => ({ ...prev, [field]: error }));
+      }
+    } else if (touched.has(field)) {
       const error = validateField(field, value);
       setErrors(prev => ({ ...prev, [field]: error }));
     }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useNetInfo } from '@react-native-community/netinfo';
-import { DashboardService } from '../services/dashboard/DashboardService';
+import DashboardService from '../services/dashboard/DashboardService';
 import { UserProfile, DashboardStats, Task } from '../types/dashboard.types';
 
 interface UseDashboardDataReturn {

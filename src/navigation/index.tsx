@@ -6,9 +6,12 @@ import { View, Text } from "react-native";
 import { ROUTES } from "../utils/constants/routes";
 import LandingScreen from "../screens/onboarding/LandingScreen";
 import RegistrationScreen from "../screens/registration/RegistrationForm";
+import RegistrationStatusScreen from "../screens/registration/RegistrationStatusScreen";
 import ProfessionalDetailsScreen from "../screens/onboarding/ProfessionalDetailsScreen";
 import SecurityPreferencesScreen from "../screens/onboarding/SecurityPreferencesScreen";
 import DashboardScreen from "../screens/dashboard/DashboardScreen";
+import CPDTrackerScreen from "../screens/cpd/CPDTrackerScreen";
+import ProfessionalStandardsScreen from "../screens/standards/ProfessionalStandardsScreen";
 
 // Create placeholder screens for routes that aren't implemented yet
 const PlaceholderScreen = ({ route }: any) => (
@@ -54,6 +57,10 @@ const AppNavigator = () => {
           component={RegistrationScreen}
         />
         <Stack.Screen 
+          name={ROUTES.RegistrationStatus} 
+          component={RegistrationStatusScreen}
+        />
+        <Stack.Screen 
           name={ROUTES.ProfessionalDetails} 
           component={ProfessionalDetailsScreen}
         />
@@ -75,11 +82,11 @@ const AppNavigator = () => {
         />
         <Stack.Screen 
           name={ROUTES.CPD} 
-          component={PlaceholderScreen}
+          component={CPDTrackerScreen}
         />
         <Stack.Screen 
           name={ROUTES.Standards} 
-          component={PlaceholderScreen}
+          component={ProfessionalStandardsScreen}
         />
         <Stack.Screen 
           name={ROUTES.Profile} 

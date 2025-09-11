@@ -15,7 +15,14 @@
       "Bash(git push:*)",
       "Bash(git remote add:*)",
       "Bash(gh repo create:*)",
-      "Bash(git remote remove:*)"
+      "Bash(git remote remove:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm test:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm audit:*)",
+      "Bash(timeout 30s npm start)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []
