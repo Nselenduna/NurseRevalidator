@@ -10,7 +10,7 @@ module.exports = {
     '<rootDir>/src/test/setup.ts'
   ],
   transformIgnorePatterns: [
-    'node_modules/(?!(react-native|@react-native|expo-.*|@expo/.*|react-native-.*|@react-navigation/.*|react-native-reanimated|react-native-svg)/)'
+    'node_modules/(?!(react-native|@react-native|expo-.*|@expo/.*|react-native-.*|@react-navigation/.*|react-native-reanimated|react-native-svg|@supabase)/)'
   ],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
