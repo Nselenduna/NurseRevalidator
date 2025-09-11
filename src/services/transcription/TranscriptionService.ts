@@ -1,76 +1,7 @@
-import {
-  TranscriptionServiceInterface,
-  TranscriptMetadata,
-} from '../../types/cpd.types';
+import { TranscriptionServiceInterface, TranscriptMetadata } from '../../types/cpd.types';
 
 class TranscriptionService implements TranscriptionServiceInterface {
   
-  // Medical terms dictionary for detection and correction
-  private medicalTerms: string[] = [
-    'medication', 'patient', 'diagnosis', 'treatment', 'nursing', 'clinical',
-    'assessment', 'intervention', 'care plan', 'documentation', 'procedure',
-    'protocol', 'guideline', 'evidence-based', 'best practice', 'quality',
-    'safety', 'risk assessment', 'infection control', 'hand hygiene',
-    'wound care', 'medication administration', 'vital signs', 'blood pressure',
-    'pulse', 'temperature', 'respiratory', 'cardiovascular', 'neurological',
-    'gastrointestinal', 'musculoskeletal', 'endocrine', 'renal', 'hepatic',
-    'dermatology', 'oncology', 'pediatric', 'geriatric', 'mental health',
-    'psychiatry', 'psychology', 'rehabilitation', 'palliative', 'emergency',
-    'critical care', 'intensive care', 'operating theatre', 'anaesthesia',
-    'recovery', 'discharge planning', 'continuity of care', 'multidisciplinary',
-    'interprofessional', 'collaboration', 'communication', 'documentation',
-    'record keeping', 'confidentiality', 'consent', 'capacity', 'safeguarding',
-    'advocacy', 'ethics', 'professional standards', 'NMC', 'revalidation',
-    'CPD', 'reflection', 'supervision', 'mentorship', 'leadership',
-  ];
-
-  // Common medical term corrections
-  private termCorrections: { [key: string]: string } = {
-    'medecine': 'medicine',
-    'medicacion': 'medication',
-    'patien': 'patient',
-    'diagnoses': 'diagnosis',
-    'treatement': 'treatment',
-    'assesment': 'assessment',
-    'proceedure': 'procedure',
-    'protacol': 'protocol',
-    'evidance': 'evidence',
-    'qualaty': 'quality',
-    'safty': 'safety',
-    'infaction': 'infection',
-    'higene': 'hygiene',
-    'administracion': 'administration',
-    'respitory': 'respiratory',
-    'cardiovasculer': 'cardiovascular',
-    'neurlogical': 'neurological',
-    'gastrointestinal': 'gastrointestinal',
-    'muscloskeletal': 'musculoskeletal',
-    'endocrin': 'endocrine',
-    'pediatrik': 'pediatric',
-    'geriatrik': 'geriatric',
-    'rehabilitacion': 'rehabilitation',
-    'pallitive': 'palliative',
-    'emergancy': 'emergency',
-    'intensiv': 'intensive',
-    'anaestesia': 'anaesthesia',
-    'recovary': 'recovery',
-    'discharg': 'discharge',
-    'multidisciplinry': 'multidisciplinary',
-    'interprofesional': 'interprofessional',
-    'colaboration': 'collaboration',
-    'comunicacion': 'communication',
-    'confidencialaty': 'confidentiality',
-    'safguarding': 'safeguarding',
-    'advocasy': 'advocacy',
-    'ethiks': 'ethics',
-    'profesional': 'professional',
-    'revalidacion': 'revalidation',
-    'refleccion': 'reflection',
-    'supervicion': 'supervision',
-    'mentorshp': 'mentorship',
-    'ledership': 'leadership',
-  };
-
   async transcribeAudio(audioUri: string): Promise<{
     transcript: string;
     confidence: number;
@@ -78,192 +9,259 @@ class TranscriptionService implements TranscriptionServiceInterface {
   }> {
     try {
       // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 2000 + Math.random() * 3000));
+      await new Promise(resolve => setTimeout(resolve, 3000));
       
-      // Mock transcription - in real app would call Whisper, Google STT, or similar
+      // Mock transcription result
       const mockTranscripts = [
-        "Today I attended a clinical skills workshop focused on wound care management. The session covered advanced dressing techniques and infection prevention protocols. I learned about the importance of proper assessment before applying dressings and how to document findings accurately. This knowledge will help improve patient outcomes in my daily practice.",
-        
-        "I completed a reflection on a challenging patient interaction where effective communication was crucial. The situation involved explaining medication side effects to an anxious patient. I used active listening techniques and provided clear, simple explanations. This experience reinforced the importance of patient-centered communication in nursing practice.",
-        
-        "Attended a multidisciplinary team meeting discussing discharge planning for complex patients. The session emphasized the role of each team member and how effective collaboration improves continuity of care. I gained insights into social services referrals and community support options available to patients.",
-        
-        "Participated in a medication safety training session covering high-risk medications and double-checking procedures. The training highlighted common medication errors and prevention strategies. I learned about the five rights of medication administration and proper documentation requirements.",
-        
-        "Completed an online module on infection control practices, focusing on hand hygiene and personal protective equipment use. The course covered evidence-based guidelines for preventing healthcare-associated infections. I reflected on current practices in my workplace and identified areas for improvement.",
+        "Today I attended a clinical skills workshop focused on advanced patient assessment techniques. I learned about systematic approaches to physical examination and how to identify subtle signs of deterioration. The session emphasized the importance of holistic patient care and effective communication with patients and their families.",
+        "During my mentoring session with a junior colleague, I reflected on my leadership style and how I can better support new team members. We discussed challenging patient scenarios and I shared evidence-based strategies for managing complex clinical situations.",
+        "I completed an online course on infection control protocols and updated my knowledge of the latest guidelines. The training covered hand hygiene practices, personal protective equipment use, and strategies for preventing healthcare-associated infections in various clinical settings.",
+        "Today's reflection focuses on a challenging ethical dilemma I encountered in practice. I considered the principles of beneficence and autonomy while making decisions about patient care. This experience has reinforced the importance of involving patients in their care decisions and maintaining professional boundaries."
       ];
       
       const transcript = mockTranscripts[Math.floor(Math.random() * mockTranscripts.length)];
-      const confidence = 85 + Math.random() * 10; // 85-95% confidence
-      
-      // Detect medical terms in transcript
-      const detectedTerms = this.detectMedicalTerms(transcript);
+      const confidence = 85 + Math.random() * 10; // 85-95%
       
       const metadata: Partial<TranscriptMetadata> = {
         confidence,
         language: 'en-GB',
-        medicalTermsDetected: detectedTerms,
+        medicalTermsDetected: this.detectMedicalTerms(transcript),
         editHistory: [],
       };
-
+      
       return {
         transcript,
         confidence,
         metadata,
       };
     } catch (error) {
-      console.error('Transcription failed:', error);
+      console.error('Error transcribing audio:', error);
       throw new Error('Failed to transcribe audio. Please try again.');
     }
   }
 
   detectMedicalTerms(text: string): string[] {
+    const medicalTerms = [
+      'assessment', 'patient', 'clinical', 'diagnosis', 'treatment', 'medication',
+      'symptoms', 'nursing', 'healthcare', 'protocol', 'guidelines', 'infection',
+      'hygiene', 'sterile', 'vital signs', 'blood pressure', 'temperature',
+      'respiratory', 'cardiovascular', 'neurological', 'gastrointestinal',
+      'musculoskeletal', 'dermatological', 'psychiatric', 'pediatric', 'geriatric',
+      'emergency', 'intensive care', 'surgery', 'anesthesia', 'pharmacy',
+      'laboratory', 'radiology', 'pathology', 'rehabilitation', 'palliative',
+      'wound care', 'catheter', 'IV', 'injection', 'prescription', 'dosage',
+      'allergy', 'adverse reaction', 'contraindication', 'efficacy', 'therapeutic'
+    ];
+    
     const lowerText = text.toLowerCase();
     const detectedTerms: string[] = [];
     
-    for (const term of this.medicalTerms) {
+    medicalTerms.forEach(term => {
       if (lowerText.includes(term.toLowerCase())) {
         detectedTerms.push(term);
       }
-    }
+    });
     
-    // Remove duplicates and sort
-    return [...new Set(detectedTerms)].sort();
+    // Remove duplicates and return
+    return Array.from(new Set(detectedTerms));
   }
 
   correctMedicalTerms(text: string): string {
+    const corrections: { [key: string]: string } = {
+      'BP': 'blood pressure',
+      'HR': 'heart rate',
+      'RR': 'respiratory rate',
+      'O2': 'oxygen',
+      'IV': 'intravenous',
+      'IM': 'intramuscular',
+      'PO': 'per oral',
+      'PRN': 'as needed',
+      'BID': 'twice daily',
+      'TID': 'three times daily',
+      'QID': 'four times daily',
+      'NPO': 'nothing by mouth',
+      'DNR': 'do not resuscitate',
+      'ICU': 'intensive care unit',
+      'ED': 'emergency department',
+      'OR': 'operating room',
+      'PACU': 'post-anesthesia care unit',
+    };
+    
     let correctedText = text;
     
-    // Apply term corrections
-    for (const [incorrect, correct] of Object.entries(this.termCorrections)) {
-      const regex = new RegExp(`\\b${incorrect}\\b`, 'gi');
-      correctedText = correctedText.replace(regex, correct);
-    }
+    Object.entries(corrections).forEach(([abbrev, fullTerm]) => {
+      const regex = new RegExp(`\\b${abbrev}\\b`, 'gi');
+      correctedText = correctedText.replace(regex, fullTerm);
+    });
     
     return correctedText;
   }
 
-  // Validate transcript for common issues
-  validateTranscript(text: string): {
-    isValid: boolean;
+  // Additional helper methods for CPDTrackerScreen
+  extractLearningOutcomes(transcript: string): string[] {
+    const outcomes: string[] = [];
+    
+    // Look for learning-related phrases
+    const learningPatterns = [
+      /I learned (.*?)(?:\.|$)/gi,
+      /I gained (.*?)(?:\.|$)/gi,
+      /I developed (.*?)(?:\.|$)/gi,
+      /I improved (.*?)(?:\.|$)/gi,
+      /I enhanced (.*?)(?:\.|$)/gi,
+      /I discovered (.*?)(?:\.|$)/gi,
+      /I understood (.*?)(?:\.|$)/gi,
+      /I realized (.*?)(?:\.|$)/gi,
+    ];
+    
+    learningPatterns.forEach(pattern => {
+      const matches = Array.from(transcript.matchAll(pattern));
+      matches.forEach(match => {
+        if (match[1] && match[1].trim().length > 5) {
+          outcomes.push(`Enhanced understanding of ${match[1].trim().toLowerCase()}`);
+        }
+      });
+    });
+    
+    // Add some default outcomes if none were extracted
+    if (outcomes.length === 0) {
+      const defaultOutcomes = [
+        'Improved clinical knowledge through reflective practice',
+        'Enhanced professional development through self-reflection',
+        'Strengthened evidence-based practice skills',
+      ];
+      outcomes.push(defaultOutcomes[Math.floor(Math.random() * defaultOutcomes.length)]);
+    }
+    
+    // Limit to 3 outcomes and remove duplicates
+    return Array.from(new Set(outcomes)).slice(0, 3);
+  }
+
+  generateSummary(transcript: string, maxLength: number = 100): string {
+    if (transcript.length <= maxLength) {
+      return transcript;
+    }
+    
+    // Try to find first sentence
+    const sentences = transcript.split(/[.!?]+/);
+    const firstSentence = sentences[0]?.trim();
+    
+    if (firstSentence && firstSentence.length <= maxLength) {
+      return firstSentence;
+    }
+    
+    // Fallback to truncation with word boundary
+    const truncated = transcript.substring(0, maxLength);
+    const lastSpaceIndex = truncated.lastIndexOf(' ');
+    
+    if (lastSpaceIndex > maxLength * 0.8) {
+      return truncated.substring(0, lastSpaceIndex) + '...';
+    }
+    
+    return truncated + '...';
+  }
+
+  // Quality assessment
+  assessTranscriptionQuality(transcript: string, confidence: number): {
+    quality: 'high' | 'medium' | 'low';
     issues: string[];
     suggestions: string[];
   } {
     const issues: string[] = [];
     const suggestions: string[] = [];
     
-    // Check minimum length
-    if (text.length < 10) {
-      issues.push('Transcript is too short');
-      suggestions.push('Add more detail about your learning experience');
+    // Check confidence score
+    if (confidence < 70) {
+      issues.push('Low transcription confidence');
+      suggestions.push('Consider re-recording with better audio quality');
     }
     
-    // Check for medical terms
-    const medicalTerms = this.detectMedicalTerms(text);
-    if (medicalTerms.length === 0) {
-      issues.push('No medical or nursing terms detected');
-      suggestions.push('Include specific medical terminology related to your learning');
+    // Check length
+    if (transcript.length < 50) {
+      issues.push('Very short transcript');
+      suggestions.push('Add more detailed reflection');
     }
     
-    // Check for learning outcomes indicators
-    const learningIndicators = [
-      'learned', 'gained', 'understood', 'improved', 'developed',
-      'knowledge', 'skills', 'experience', 'insight', 'reflection'
-    ];
-    
-    const hasLearningIndicators = learningIndicators.some(indicator =>
-      text.toLowerCase().includes(indicator)
-    );
-    
-    if (!hasLearningIndicators) {
-      issues.push('No clear learning outcomes identified');
-      suggestions.push('Describe what you learned or how you developed');
+    // Check for incomplete sentences
+    const sentences = transcript.split(/[.!?]+/);
+    const incompleteSentences = sentences.filter(s => s.trim().length > 0 && s.trim().length < 10);
+    if (incompleteSentences.length > sentences.length * 0.3) {
+      issues.push('Many incomplete sentences detected');
+      suggestions.push('Review and complete truncated thoughts');
     }
     
-    // Check for proper sentences
-    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-    if (sentences.length < 2) {
-      issues.push('Consider writing in complete sentences');
-      suggestions.push('Structure your reflection with clear sentences');
+    // Determine overall quality
+    let quality: 'high' | 'medium' | 'low';
+    if (confidence >= 90 && transcript.length >= 100 && issues.length === 0) {
+      quality = 'high';
+    } else if (confidence >= 70 && transcript.length >= 50 && issues.length <= 2) {
+      quality = 'medium';
+    } else {
+      quality = 'low';
     }
     
-    return {
-      isValid: issues.length === 0,
-      issues,
-      suggestions,
-    };
+    return { quality, issues, suggestions };
   }
 
-  // Extract learning outcomes from text using simple NLP
-  extractLearningOutcomes(text: string): string[] {
-    const outcomes: string[] = [];
-    const lowerText = text.toLowerCase();
-    
-    // Pattern matching for learning statements
-    const patterns = [
-      /i learned (.*?)(?:\.|,|$)/gi,
-      /i gained (.*?)(?:\.|,|$)/gi,
-      /i understood (.*?)(?:\.|,|$)/gi,
-      /i developed (.*?)(?:\.|,|$)/gi,
-      /this helped me (.*?)(?:\.|,|$)/gi,
-      /i now understand (.*?)(?:\.|,|$)/gi,
-    ];
-    
-    for (const pattern of patterns) {
-      const matches = [...text.matchAll(pattern)];
-      for (const match of matches) {
-        if (match[1] && match[1].trim().length > 5) {
-          outcomes.push(match[1].trim());
-        }
-      }
-    }
-    
-    // If no patterns found, try to extract from context
-    if (outcomes.length === 0) {
-      const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 10);
+  // Format transcript for different purposes
+  formatTranscript(
+    transcript: string, 
+    format: 'cpd' | 'reflection' | 'summary'
+  ): string {
+    switch (format) {
+      case 'cpd':
+        return `Professional Development Reflection:\n\n${transcript}\n\nThis reflection contributes to my ongoing professional development and meets NMC revalidation requirements.`;
       
-      // Look for sentences with learning-related keywords
-      for (const sentence of sentences) {
-        const lowerSentence = sentence.toLowerCase();
-        if (lowerSentence.includes('learn') || 
-            lowerSentence.includes('understand') || 
-            lowerSentence.includes('knowledge') ||
-            lowerSentence.includes('skill')) {
-          outcomes.push(sentence.trim());
-        }
-      }
+      case 'reflection':
+        return `Clinical Reflection:\n\nDescription: ${transcript}\n\nLearning Points: ${this.extractLearningOutcomes(transcript).join(', ')}\n\nFuture Actions: Continue to apply these insights in my professional practice.`;
+      
+      case 'summary':
+        return this.generateSummary(transcript, 200);
+      
+      default:
+        return transcript;
     }
-    
-    return outcomes.slice(0, 3); // Limit to 3 outcomes
-  }
-
-  // Generate summary from transcript
-  generateSummary(text: string, maxLength: number = 100): string {
-    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 10);
-    
-    if (sentences.length === 0) return text.substring(0, maxLength);
-    
-    // Take first sentence and key sentences
-    let summary = sentences[0].trim();
-    
-    if (summary.length < maxLength && sentences.length > 1) {
-      // Add sentences until we reach max length
-      for (let i = 1; i < sentences.length && summary.length < maxLength; i++) {
-        const nextSentence = sentences[i].trim();
-        if (summary.length + nextSentence.length + 2 <= maxLength) {
-          summary += '. ' + nextSentence;
-        } else {
-          break;
-        }
-      }
-    }
-    
-    if (summary.length > maxLength) {
-      summary = summary.substring(0, maxLength - 3) + '...';
-    }
-    
-    return summary;
   }
 }
 
-export default new TranscriptionService();
+// Create singleton and static wrapper methods
+const transcriptionServiceInstance = new TranscriptionService();
+
+class TranscriptionServiceStatic {
+  static async transcribeAudio(audioUri: string): Promise<{
+    transcript: string;
+    confidence: number;
+    metadata: Partial<TranscriptMetadata>;
+  }> {
+    return transcriptionServiceInstance.transcribeAudio(audioUri);
+  }
+
+  static detectMedicalTerms(text: string): string[] {
+    return transcriptionServiceInstance.detectMedicalTerms(text);
+  }
+
+  static correctMedicalTerms(text: string): string {
+    return transcriptionServiceInstance.correctMedicalTerms(text);
+  }
+
+  static extractLearningOutcomes(transcript: string): string[] {
+    return transcriptionServiceInstance.extractLearningOutcomes(transcript);
+  }
+
+  static generateSummary(transcript: string, maxLength: number = 100): string {
+    return transcriptionServiceInstance.generateSummary(transcript, maxLength);
+  }
+
+  static assessTranscriptionQuality(transcript: string, confidence: number): {
+    quality: 'high' | 'medium' | 'low';
+    issues: string[];
+    suggestions: string[];
+  } {
+    return transcriptionServiceInstance.assessTranscriptionQuality(transcript, confidence);
+  }
+
+  static formatTranscript(transcript: string, format: 'cpd' | 'reflection' | 'summary'): string {
+    return transcriptionServiceInstance.formatTranscript(transcript, format);
+  }
+}
+
+export default TranscriptionServiceStatic;

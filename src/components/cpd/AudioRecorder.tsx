@@ -17,11 +17,10 @@ import Animated, {
   cancelAnimation,
   interpolate,
 } from 'react-native-reanimated';
-import { Canvas, Path, Skia } from '@shopify/react-native-skia';
 import * as Haptics from 'expo-haptics';
 
 import { AudioRecorderProps, RecordingStatus } from '../../types/cpd.types';
-import AudioService from '../../services/audio/AudioService';
+import AudioService, { AudioService as AudioServiceClass } from '../../services/audio/AudioService';
 import { COLORS } from '../../utils/constants/colors';
 import useReducedMotion from '../../hooks/useReducedMotion';
 
@@ -133,9 +132,9 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
       await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       
       // Check permissions
-      const hasPermission = await AudioService.checkPermissions();
+      const hasPermission = await AudioServiceClass.checkPermissions();
       if (!hasPermission) {
-        const granted = await AudioService.requestPermissions();
+        const granted = await AudioServiceClass.requestPermissions();
         if (!granted) {
           throw new Error('Microphone permission is required to record audio');
         }
@@ -266,30 +265,28 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
     opacity: waveformOpacity.value,
   }));
 
-  // Create waveform path
-  const createWaveformPath = () => {
-    if (audioLevels.length < 2) return null;
+  // Create waveform bars
+  const createWaveformBars = () => {
+    if (audioLevels.length === 0) return [];
     
-    const path = Skia.Path.Make();
-    const width = screenWidth - 80;
-    const height = 60;
-    const stepX = width / (audioLevels.length - 1);
+    const maxBars = 50;
+    const visibleLevels = audioLevels.slice(-maxBars);
     
-    // Start from bottom center
-    path.moveTo(0, height / 2);
-    
-    // Draw waveform
-    audioLevels.forEach((level, index) => {
-      const x = index * stepX;
-      const y = height / 2 + (level - 0.5) * height * 0.8;
-      if (index === 0) {
-        path.moveTo(x, y);
-      } else {
-        path.lineTo(x, y);
-      }
+    return visibleLevels.map((level, index) => {
+      const barHeight = Math.max(4, level * 60);
+      return (
+        <Animated.View
+          key={`bar-${index}`}
+          style={[
+            styles.waveformBar,
+            {
+              height: barHeight,
+              opacity: 0.6 + (level * 0.4), // Dynamic opacity based on level
+            },
+          ]}
+        />
+      );
     });
-    
-    return path;
   };
 
   return (
@@ -320,16 +317,9 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
 
       {/* Waveform Visualization */}
       <Animated.View style={[styles.waveformContainer, waveformStyle]}>
-        {audioLevels.length > 1 && (
-          <Canvas style={styles.waveform}>
-            <Path
-              path={createWaveformPath()}
-              strokeWidth={2}
-              style="stroke"
-              color={COLORS.white}
-            />
-          </Canvas>
-        )}
+        <View style={styles.waveform}>
+          {createWaveformBars()}
+        </View>
       </Animated.View>
 
       {/* Recording Controls */}
@@ -353,7 +343,7 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
             activeOpacity={0.8}
           >
             <LinearGradient
-              colors={buttonConfig.color}
+              colors={buttonConfig.color as [string, string]}
               style={styles.primaryButtonGradient}
             >
               <Text style={styles.primaryButtonIcon}>{buttonConfig.icon}</Text>
@@ -437,6 +427,15 @@ const styles = StyleSheet.create({
   waveform: {
     flex: 1,
     width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 2,
+  },
+  waveformBar: {
+    width: 3,
+    backgroundColor: COLORS.white,
+    borderRadius: 1.5,
   },
   controlsContainer: {
     alignItems: 'center',

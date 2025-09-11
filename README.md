@@ -1,258 +1,114 @@
-# 🩺 Nurse Revalidator
+# NurseRevalidator
 
-> **Empowering nurses and midwives to deliver exceptional care through streamlined professional registration and development tracking.**
+A comprehensive React Native application for nurses to track their Continuing Professional Development (CPD) activities and manage their NMC revalidation requirements.
 
-[![React Native](https://img.shields.io/badge/React%20Native-0.79.5-blue.svg)](https://reactnative.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.3.0-blue.svg)](https://www.typescriptlang.org/)
-[![Expo](https://img.shields.io/badge/Expo-~53.0.22-black.svg)](https://expo.dev/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.4.17-06B6D4.svg)](https://tailwindcss.com/)
+## Module Scopes
 
-## 🎯 About
+### #scope:auth
+- User authentication via Supabase Auth
+- NMC PIN encryption (client-side SHA256)
+- Session management with secure token storage
+- Biometric authentication integration
 
-Nurse Revalidator is a comprehensive mobile application designed specifically for nursing and midwifery professionals to maintain their registration status, track continuing professional development (CPD), and stay compliant with professional standards. The app provides an intuitive, secure, and efficient platform for healthcare professionals to manage their career development requirements.
+### #scope:cpd
+- CPD entry CRUD operations with offline-first architecture
+- Sync queue for offline operations with conflict resolution
+- PDF export functionality with digital signatures
+- Learning outcome extraction and categorization
 
-## ✨ Key Features
+### #scope:transcript
+- Audio upload to Supabase Storage with compression
+- WhisperAI transcription via Edge Function
+- Medical term detection and correction
+- Transcript storage and retrieval with metadata
 
-### 📋 **Professional Registration Management**
-- Real-time registration status tracking
-- Renewal date reminders and notifications
-- Document storage for registration evidence
-- Integration with professional regulatory bodies
+### #scope:offline-sync
+- AsyncStorage for local persistence
+- Network state monitoring and auto-sync
+- Conflict resolution algorithms
+- Background sync with retry mechanisms
 
-### 📚 **Continuing Professional Development (CPD)**
-- Activity logging with categorization
-- Progress tracking towards CPD requirements
-- Evidence upload and management
-- Automated hour calculations and reporting
+### #scope:storage-policy
+- Row Level Security (RLS) policies for data isolation
+- Storage bucket access control with user-specific paths
+- File upload restrictions and validation
+- Secure document management
 
-### 🔐 **Security & Compliance**
-- Secure local data storage with encryption
-- Biometric authentication support
-- GDPR compliant data handling
-- Offline-first architecture with sync capabilities
+### #scope:env-setup
+- Environment variable management with validation
+- Feature flag configuration system
+- API key security and rotation support
+- Development/production environment separation
 
-### 📱 **User Experience**
-- Modern, accessible UI design
-- Dark/light theme support
-- Haptic feedback integration
-- Smooth animations and transitions
-- Multi-language support ready
+## Features
 
-### 🔔 **Smart Notifications**
-- Intelligent reminder system
-- Customizable notification preferences
-- Background task processing
-- Calendar integration
+### ✅ Production-Ready Features
 
-## 🛠️ Technology Stack
+1. **Secure Authentication** - Supabase Auth with encrypted NMC PIN storage
+2. **Offline-First CPD Tracking** - Complete offline functionality with intelligent sync
+3. **Professional Voice Transcription** - AI-powered medical transcription with term detection
+4. **Certified PDF Export** - Digital signatures and professional formatting
+5. **Enterprise Security** - Row-level security, encrypted storage, and audit trails
+6. **Comprehensive Testing** - Unit, integration, and E2E test coverage
+7. **Production Monitoring** - Error tracking, performance monitoring, and analytics
 
-### **Frontend Framework**
-- **React Native 0.79.5** - Cross-platform mobile development
-- **TypeScript** - Type-safe development
-- **Expo SDK ~53.0** - Development platform and services
+### 🏗️ Technical Architecture
 
-### **Styling & UI**
-- **NativeWind 3.0** - TailwindCSS for React Native
-- **React Native Reanimated** - High-performance animations
-- **React Native SVG** - Vector graphics support
-- **Expo Vector Icons** - Comprehensive icon library
+- **Frontend**: React Native 0.79.5 with Expo SDK 53
+- **Backend**: Supabase (PostgreSQL + Edge Functions)
+- **Authentication**: Supabase Auth with encrypted credential storage
+- **Storage**: Supabase Storage with RLS policies
+- **AI**: WhisperAI for medical transcription
+- **Offline**: AsyncStorage with intelligent sync algorithms
+- **Security**: End-to-end encryption, RLS, and audit logging
+- **Testing**: Jest + React Native Testing Library + Detox
 
-### **Navigation & State**
-- **React Navigation 7.x** - Type-safe navigation
-- **React Navigation Stack** - Stack-based navigation
-- **Context API** - State management
-
-### **Storage & Security**
-- **AsyncStorage** - Local data persistence
-- **Expo Secure Store** - Encrypted sensitive data storage
-- **Expo Local Authentication** - Biometric authentication
-- **React Native NetInfo** - Network status monitoring
-
-### **Development Tools**
-- **Expo CLI** - Development workflow
-- **TypeScript** - Static type checking
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
-
-## 🚀 Getting Started
-
-### **Prerequisites**
-
-Ensure you have the following installed:
-- **Node.js** (v16 or later)
-- **npm** or **yarn**
-- **Git**
-- **Expo CLI**: `npm install -g @expo/cli`
-- **Expo Go** app on your mobile device (for testing)
-
-### **Installation**
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/Nselenduna/NurseRevalidator.git
-   cd NurseRevalidator
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server:**
-   ```bash
-   npm start
-   # or
-   npx expo start
-   ```
-
-4. **Run on your preferred platform:**
-   - **Android**: Press `a` or scan QR code with Expo Go
-   - **iOS**: Press `i` or scan QR code with Camera app
-   - **Web**: Press `w` for web development
-
-### **Development Workflow**
+## Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
 # Start development server
 npm start
 
-# Start with clear cache
-npm start -- --clear
+# Run on iOS
+npm run ios
 
-# Run TypeScript checks
-npx tsc --noEmit
-
-# Run on specific platform
-npx expo start --android
-npx expo start --ios
-npx expo start --web
+# Run on Android
+npm run android
 ```
 
-## 📁 Project Architecture
+## Testing
+
+```bash
+# Unit tests
+npm test
+
+# Integration tests
+npm run test:integration
+
+# E2E tests
+npx detox test --configuration ios.sim.debug
+
+# Coverage report
+npm run test:coverage
+```
+
+## Project Structure
 
 ```
 src/
-├── components/           # Reusable UI components
-│   ├── common/          # Shared components (buttons, inputs, etc.)
-│   ├── dashboard/       # Dashboard-specific components
-│   ├── forms/           # Form-related components
-│   └── ui/              # Base UI components
-├── screens/             # Application screens
-│   ├── dashboard/       # Dashboard screens
-│   ├── onboarding/      # Onboarding flow
-│   └── registration/    # Registration screens
-├── navigation/          # Navigation configuration
-├── services/            # API and business logic
-│   ├── dashboard/       # Dashboard services
-│   ├── storage/         # Local storage services
-│   └── validation/      # Form validation logic
-├── hooks/               # Custom React hooks
-├── types/               # TypeScript type definitions
-└── utils/               # Utility functions and constants
-    └── constants/       # App constants (colors, routes, etc.)
+├── components/          # Reusable UI components
+├── screens/            # Screen components
+├── services/          # Business logic and API calls
+├── hooks/             # Custom React hooks
+├── utils/             # Utility functions
+├── types/             # TypeScript definitions
+├── data/              # Static data
+└── test/              # Testing utilities
 ```
 
-### **Component Organization**
+## License
 
-- **`/components/common`**: Reusable components used across multiple screens
-- **`/components/dashboard`**: Dashboard-specific UI components
-- **`/components/forms`**: Form inputs, validation, and related components
-- **`/screens`**: Full-screen components with navigation integration
-- **`/services`**: Business logic, API calls, and data management
-- **`/hooks`**: Custom React hooks for shared logic
-- **`/types`**: TypeScript interfaces and type definitions
-
-## 🎨 Design System
-
-### **Color Palette**
-- **Primary**: `#6B46C1` (Purple)
-- **Secondary**: `#10B981` (Emerald)
-- **Accent**: `#F59E0B` (Amber)
-- **Success**: `#059669`
-- **Warning**: `#D97706`
-- **Error**: `#DC2626`
-
-### **Typography**
-- **Display**: System font stack
-- **Body**: Optimized for readability
-- **Monospace**: Code and data display
-
-### **Spacing System**
-Following TailwindCSS spacing scale (4px base unit)
-
-## 📱 Features Overview
-
-### **Dashboard Screen**
-- Registration status overview
-- CPD progress visualization
-- Quick action buttons
-- Upcoming reminders
-- Statistics and insights
-
-### **Registration Management**
-- Professional details form
-- Document upload interface
-- Status tracking
-- Renewal workflows
-
-### **CPD Tracking**
-- Activity logging
-- Category management
-- Evidence attachment
-- Progress reports
-
-### **Security Features**
-- Biometric login
-- Secure data storage
-- Privacy controls
-- Data export options
-
-## 🔧 Configuration
-
-### **Environment Setup**
-Create necessary configuration files for different environments:
-
-```bash
-# Development environment
-expo start --dev-client
-
-# Production build
-expo build --platform all
-```
-
-### **Customization**
-- **Colors**: Update `src/utils/constants/colors.ts`
-- **Routes**: Modify `src/utils/constants/routes.ts`
-- **Themes**: Extend TailwindCSS configuration in `tailwind.config.js`
-
-## 🤝 Contributing
-
-We welcome contributions! Please read our contributing guidelines before submitting pull requests.
-
-### **Development Guidelines**
-1. Follow TypeScript best practices
-2. Use conventional commit messages
-3. Ensure all tests pass
-4. Update documentation as needed
-5. Follow the established code style
-
-### **Code Style**
-- Use TypeScript for all new files
-- Follow ESLint and Prettier configurations
-- Use functional components with hooks
-- Implement proper error boundaries
-- Write descriptive commit messages
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📧 Support
-
-For support, questions, or contributions:
-- **GitHub Issues**: [Create an issue](https://github.com/Nselenduna/NurseRevalidator/issues)
-- **Discussions**: [Join the discussion](https://github.com/Nselenduna/NurseRevalidator/discussions)
-
----
-
-**Built with ❤️ for healthcare professionals by the Nurse Revalidator team**
+MIT License

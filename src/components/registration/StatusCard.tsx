@@ -12,7 +12,7 @@ import * as Haptics from 'expo-haptics';
 
 import { StatusCardProps } from '../../types/registration.types';
 import { COLORS } from '../../utils/constants/colors';
-import RegistrationService from '../../services/registration/RegistrationService';
+import RegistrationService, { RegistrationService as RegistrationServiceClass } from '../../services/registration/RegistrationService';
 
 const StatusCard: React.FC<StatusCardProps> = ({
   nmcPin,
@@ -71,8 +71,8 @@ const StatusCard: React.FC<StatusCardProps> = ({
   };
 
   const statusConfig = getStatusConfig();
-  const formattedPin = RegistrationService.formatNMCPin(nmcPin);
-  const daysUntilExpiry = RegistrationService.getDaysUntilExpiry(expiryDate);
+  const formattedPin = RegistrationServiceClass.formatNMCPin(nmcPin);
+  const daysUntilExpiry = RegistrationServiceClass.getDaysUntilExpiry(expiryDate);
 
   // Pulse animation for pending status
   React.useEffect(() => {

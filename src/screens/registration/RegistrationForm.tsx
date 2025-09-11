@@ -433,7 +433,7 @@ export default function RegistrationScreen() {
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={{ flex: 1 }}
-          keyboardVerticalOffset={Platform.OS === 'ios' ? 120 : 30}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}
         >
           <ScrollView
             ref={scrollViewRef}
@@ -585,8 +585,8 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: 24,
-    paddingBottom: 300,
-    minHeight: '150%', // Forces scroll on all screen sizes
+    paddingBottom: 100,
+    flexGrow: 1,
   },
   title: {
     fontSize: 30,

@@ -9,7 +9,7 @@
 # 3. Run this script
 
 # Set your Supabase project ID here
-$SUPABASE_PROJECT_ID = ""
+$SUPABASE_PROJECT_ID = "amvacayfsnrmruqbqupq"
 
 if ([string]::IsNullOrEmpty($SUPABASE_PROJECT_ID)) {
     Write-Error "Error: SUPABASE_PROJECT_ID variable is not set at the top of the script"

@@ -201,7 +201,7 @@ const RegistrationStatusScreen: React.FC<RegistrationStatusScreenProps> = ({ nav
   };
 
   // Loading state
-  if (isLoading || !registrationData) {
+  if (isLoading) {
     return (
       <LinearGradient colors={[COLORS.primary, COLORS.purple2]} style={styles.container}>
         <SafeAreaView style={styles.safeArea}>

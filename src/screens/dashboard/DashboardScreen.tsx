@@ -101,7 +101,10 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ navigation }) => {
 
   const handleLogoPress = async () => {
     if (!isReducedMotion) {
-      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      // Special haptic pattern for heartbeat easter egg
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      setTimeout(() => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light), 150);
+      setTimeout(() => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success), 300);
     }
     // Easter egg - scroll to top with fun animation
     scrollViewRef.current?.scrollTo({ y: 0, animated: true });

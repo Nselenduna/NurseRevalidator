@@ -143,7 +143,7 @@ const RenewalCountdown: React.FC<RenewalCountdownProps> = ({
   if (isExpired) {
     return (
       <Animated.View style={[styles.container, pulseStyle]}>
-        <LinearGradient colors={colorScheme.colors} style={styles.gradient}>
+        <LinearGradient colors={colorScheme.colors as [string, string]} style={styles.gradient}>
           <View style={styles.expiredContainer}>
             <Text style={styles.expiredIcon}>⏰</Text>
             <Text style={[styles.expiredTitle, { color: colorScheme.textColor }]}>
@@ -160,7 +160,7 @@ const RenewalCountdown: React.FC<RenewalCountdownProps> = ({
 
   return (
     <View style={styles.container}>
-      <LinearGradient colors={colorScheme.colors} style={styles.gradient}>
+      <LinearGradient colors={colorScheme.colors as [string, string]} style={styles.gradient}>
         <Animated.View style={pulseStyle}>
           <View style={styles.header}>
             <Text style={[styles.title, { color: colorScheme.textColor }]}>

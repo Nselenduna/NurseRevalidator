@@ -1,0 +1,370 @@
+{
+  "version": "2024.1",
+  "lastUpdated": "2024-01-15T00:00:00Z",
+  "categories": [
+    {
+      "id": "prioritise_people",
+      "title": "Prioritise People",
+      "description": "Put the interests of people using or needing nursing and midwifery services first",
+      "color": "#6B46C1",
+      "icon": "👥",
+      "priority": 1
+    },
+    {
+      "id": "practise_effectively",
+      "title": "Practise Effectively",
+      "description": "Deliver evidence-based care that is person-centred, safe and compassionate",
+      "color": "#10B981",
+      "icon": "🎯",
+      "priority": 2
+    },
+    {
+      "id": "preserve_safety",
+      "title": "Preserve Safety",
+      "description": "Hold the interests of people using or needing nursing and midwifery services above your own interests",
+      "color": "#EF4444",
+      "icon": "🛡️",
+      "priority": 3
+    },
+    {
+      "id": "promote_professionalism",
+      "title": "Promote Professionalism and Trust",
+      "description": "Uphold the reputation of your profession at all times",
+      "color": "#3B82F6",
+      "icon": "⭐",
+      "priority": 4
+    }
+  ],
+  "standards": [
+    {
+      "id": "1.1",
+      "categoryId": "prioritise_people",
+      "code": "1.1",
+      "title": "Treat people as individuals and uphold their dignity",
+      "description": "Treat people with kindness, respect and compassion. You should treat people as individuals and uphold their dignity.",
+      "keywords": ["dignity", "respect", "individual", "compassion", "kindness", "person-centred"],
+      "examples": [
+        "Listening to what people are telling you about how they feel",
+        "Treating each person as an individual with their own needs and preferences",
+        "Respecting people's right to privacy",
+        "Maintaining dignity during personal care",
+        "Using appropriate language and tone of voice"
+      ],
+      "relatedGuidance": [
+        "Equality, diversity and inclusion guidance",
+        "Mental capacity guidance",
+        "Consent guidance"
+      ],
+      "practicalApplications": [
+        "Always knock before entering a patient's room",
+        "Use the person's preferred name and pronouns",
+        "Explain procedures before carrying them out",
+        "Respect cultural and religious beliefs",
+        "Maintain privacy during examinations"
+      ],
+      "lastUpdated": "2024-01-15T00:00:00Z",
+      "isCritical": true,
+      "cpdHours": 2
+    },
+    {
+      "id": "1.2",
+      "categoryId": "prioritise_people",
+      "code": "1.2",
+      "title": "Listen to people and respond to their preferences and concerns",
+      "description": "Make sure that people's physical, social and psychological needs are recognised, assessed and responded to.",
+      "keywords": ["listening", "preferences", "concerns", "needs", "assessment", "response"],
+      "examples": [
+        "Taking time to understand what matters most to each person",
+        "Asking about people's preferences for care and treatment",
+        "Responding appropriately to concerns and complaints",
+        "Involving people in decisions about their care",
+        "Recognising when people need additional support"
+      ],
+      "relatedGuidance": [
+        "Decision making and consent guidance",
+        "Raising concerns guidance",
+        "Record keeping guidance"
+      ],
+      "practicalApplications": [
+        "Ask open-ended questions about patient preferences",
+        "Document patient concerns in care plans",
+        "Follow up on patient feedback",
+        "Adjust care based on individual needs",
+        "Provide information in accessible formats"
+      ],
+      "lastUpdated": "2024-01-15T00:00:00Z",
+      "isCritical": true,
+      "cpdHours": 3
+    },
+    {
+      "id": "1.3",
+      "categoryId": "prioritise_people",
+      "code": "1.3",
+      "title": "Make sure that people's physical, social and psychological needs are recognised, assessed and responded to",
+      "description": "You must make sure that people's physical, social and psychological needs are recognised, assessed and responded to.",
+      "keywords": ["physical needs", "social needs", "psychological needs", "assessment", "holistic care"],
+      "examples": [
+        "Carrying out comprehensive assessments",
+        "Recognising signs of distress or discomfort",
+        "Referring to other professionals when needed",
+        "Supporting people's social connections",
+        "Addressing pain and other physical symptoms"
+      ],
+      "relatedGuidance": [
+        "Assessment and care planning guidance",
+        "Mental health guidance",
+        "Pain management guidance"
+      ],
+      "practicalApplications": [
+        "Use validated assessment tools",
+        "Consider cultural factors in assessments",
+        "Involve family members where appropriate",
+        "Monitor for changes in condition",
+        "Coordinate with multidisciplinary teams"
+      ],
+      "lastUpdated": "2024-01-15T00:00:00Z",
+      "isCritical": true,
+      "cpdHours": 4
+    },
+    {
+      "id": "2.1",
+      "categoryId": "practise_effectively",
+      "code": "2.1",
+      "title": "Always practice in line with the best available evidence",
+      "description": "You must always practise in line with the best available evidence.",
+      "keywords": ["evidence-based", "research", "best practice", "guidelines", "current knowledge"],
+      "examples": [
+        "Using current clinical guidelines and protocols",
+        "Keeping up to date with research evidence",
+        "Applying evidence to individual patient care",
+        "Questioning practice when evidence suggests change",
+        "Participating in research and audit activities"
+      ],
+      "relatedGuidance": [
+        "Professional development guidance",
+        "Clinical supervision guidance",
+        "Quality assurance guidance"
+      ],
+      "practicalApplications": [
+        "Read current journals and research papers",
+        "Attend evidence-based practice training",
+        "Use clinical decision support tools",
+        "Participate in journal clubs",
+        "Apply NICE guidelines in practice"
+      ],
+      "lastUpdated": "2024-01-15T00:00:00Z",
+      "isCritical": true,
+      "cpdHours": 5
+    },
+    {
+      "id": "2.2",
+      "categoryId": "practise_effectively",
+      "code": "2.2",
+      "title": "Communicate clearly",
+      "description": "You must communicate clearly and effectively with people, their families and carers within your scope of practice.",
+      "keywords": ["communication", "clear", "effective", "families", "carers", "scope of practice"],
+      "examples": [
+        "Using plain English when explaining procedures",
+        "Checking understanding with patients and families",
+        "Adapting communication style to individual needs",
+        "Providing written information when appropriate",
+        "Using interpreters when needed"
+      ],
+      "relatedGuidance": [
+        "Communication guidance",
+        "Record keeping guidance",
+        "Information sharing guidance"
+      ],
+      "practicalApplications": [
+        "Use the teach-back method to confirm understanding",
+        "Provide information leaflets in appropriate languages",
+        "Use visual aids for complex procedures",
+        "Document all communications clearly",
+        "Follow up verbal instructions in writing"
+      ],
+      "lastUpdated": "2024-01-15T00:00:00Z",
+      "isCritical": true,
+      "cpdHours": 3
+    },
+    {
+      "id": "2.3",
+      "categoryId": "practise_effectively",
+      "code": "2.3",
+      "title": "Keep clear and accurate records relevant to your practice",
+      "description": "You must keep clear, accurate and complete records relevant to your practice.",
+      "keywords": ["records", "documentation", "accurate", "complete", "relevant"],
+      "examples": [
+        "Writing clear, factual entries in patient records",
+        "Recording care given and patient responses",
+        "Documenting any changes in condition",
+        "Using approved abbreviations only",
+        "Ensuring records are completed promptly"
+      ],
+      "relatedGuidance": [
+        "Record keeping guidance",
+        "Information governance guidance",
+        "Data protection guidance"
+      ],
+      "practicalApplications": [
+        "Use structured documentation frameworks",
+        "Complete records within required timeframes",
+        "Include objective observations and measurements",
+        "Document patient involvement in care decisions",
+        "Ensure records are legible and dated"
+      ],
+      "lastUpdated": "2024-01-15T00:00:00Z",
+      "isCritical": true,
+      "cpdHours": 2
+    },
+    {
+      "id": "3.1",
+      "categoryId": "preserve_safety",
+      "code": "3.1",
+      "title": "Recognise and work within the limits of your competence",
+      "description": "You must recognise and work within the limits of your competence.",
+      "keywords": ["competence", "limits", "skills", "knowledge", "safe practice"],
+      "examples": [
+        "Seeking help when unsure about a procedure",
+        "Declining tasks you're not trained to perform",
+        "Asking for supervision when learning new skills",
+        "Recognising when patients need specialist care",
+        "Continuing professional development to maintain competence"
+      ],
+      "relatedGuidance": [
+        "Competence and capability guidance",
+        "Supervision guidance",
+        "Professional development guidance"
+      ],
+      "practicalApplications": [
+        "Complete competency assessments regularly",
+        "Maintain learning and development records",
+        "Seek clinical supervision when needed",
+        "Refer to senior colleagues appropriately",
+        "Participate in mandatory training"
+      ],
+      "lastUpdated": "2024-01-15T00:00:00Z",
+      "isCritical": true,
+      "cpdHours": 3
+    },
+    {
+      "id": "3.2",
+      "categoryId": "preserve_safety",
+      "code": "3.2",
+      "title": "Use all complaints as a form of feedback and an opportunity for reflection and learning",
+      "description": "You must use all complaints as a form of feedback and an opportunity for reflection and learning.",
+      "keywords": ["complaints", "feedback", "reflection", "learning", "improvement"],
+      "examples": [
+        "Listening to complaints without being defensive",
+        "Investigating complaints thoroughly",
+        "Learning from complaints to improve practice",
+        "Supporting colleagues who receive complaints",
+        "Using complaints data to identify trends"
+      ],
+      "relatedGuidance": [
+        "Raising concerns guidance",
+        "Reflection and reflective practice guidance",
+        "Learning from incidents guidance"
+      ],
+      "practicalApplications": [
+        "Maintain a reflective journal",
+        "Participate in case review meetings",
+        "Complete incident reports promptly",
+        "Attend clinical governance meetings",
+        "Implement learning from complaints"
+      ],
+      "lastUpdated": "2024-01-15T00:00:00Z",
+      "isCritical": false,
+      "cpdHours": 2
+    },
+    {
+      "id": "4.1",
+      "categoryId": "promote_professionalism",
+      "code": "4.1",
+      "title": "Uphold the reputation of your profession at all times",
+      "description": "You must uphold the reputation of your profession at all times.",
+      "keywords": ["reputation", "profession", "conduct", "behaviour", "standards"],
+      "examples": [
+        "Behaving professionally at all times",
+        "Dressing appropriately for your role",
+        "Using social media responsibly",
+        "Maintaining confidentiality",
+        "Being honest and trustworthy"
+      ],
+      "relatedGuidance": [
+        "Professional standards guidance",
+        "Social media guidance",
+        "Confidentiality guidance"
+      ],
+      "practicalApplications": [
+        "Follow dress code policies",
+        "Review social media privacy settings",
+        "Avoid discussing patients in public",
+        "Report professional misconduct",
+        "Act as a positive role model"
+      ],
+      "lastUpdated": "2024-01-15T00:00:00Z",
+      "isCritical": true,
+      "cpdHours": 1
+    },
+    {
+      "id": "4.2",
+      "categoryId": "promote_professionalism",
+      "code": "4.2",
+      "title": "Display a personal commitment to the standards of practice and behaviour set out in the Code",
+      "description": "You must display a personal commitment to the standards of practice and behaviour set out in the Code.",
+      "keywords": ["commitment", "standards", "practice", "behaviour", "code"],
+      "examples": [
+        "Following all aspects of the professional code",
+        "Taking responsibility for your own actions",
+        "Supporting colleagues to maintain standards",
+        "Participating in professional development",
+        "Challenging poor practice when you see it"
+      ],
+      "relatedGuidance": [
+        "Professional accountability guidance",
+        "Candour and honesty guidance",
+        "Raising concerns guidance"
+      ],
+      "practicalApplications": [
+        "Regularly review the professional code",
+        "Complete annual revalidation requirements",
+        "Participate in professional networks",
+        "Mentor junior colleagues",
+        "Lead by example in all interactions"
+      ],
+      "lastUpdated": "2024-01-15T00:00:00Z",
+      "isCritical": true,
+      "cpdHours": 2
+    }
+  ],
+  "metadata": {
+    "totalStandards": 10,
+    "totalCategories": 4,
+    "averageCpdHours": 2.7,
+    "criticalStandards": 8,
+    "source": "Nursing and Midwifery Council (NMC) - The Code",
+    "officialUrl": "https://www.nmc.org.uk/standards/code/",
+    "disclaimer": "This is a representative sample of NMC standards for demonstration purposes. Always refer to the official NMC website for the complete and current standards.",
+    "nextReview": "2024-07-15T00:00:00Z"
+  },
+  "searchIndex": {
+    "keywords": [
+      "dignity", "respect", "individual", "compassion", "kindness", "person-centred",
+      "listening", "preferences", "concerns", "needs", "assessment", "response",
+      "physical needs", "social needs", "psychological needs", "holistic care",
+      "evidence-based", "research", "best practice", "guidelines", "current knowledge",
+      "communication", "clear", "effective", "families", "carers", "scope of practice",
+      "records", "documentation", "accurate", "complete", "relevant",
+      "competence", "limits", "skills", "knowledge", "safe practice",
+      "complaints", "feedback", "reflection", "learning", "improvement",
+      "reputation", "profession", "conduct", "behaviour", "standards",
+      "commitment", "practice", "behaviour", "code"
+    ],
+    "categories": [
+      "prioritise_people", "practise_effectively", "preserve_safety", "promote_professionalism"
+    ],
+    "codes": [
+      "1.1", "1.2", "1.3", "2.1", "2.2", "2.3", "3.1", "3.2", "4.1", "4.2"
+    ]
+  }
+}

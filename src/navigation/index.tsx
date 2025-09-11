@@ -11,6 +11,7 @@ import ProfessionalDetailsScreen from "../screens/onboarding/ProfessionalDetails
 import SecurityPreferencesScreen from "../screens/onboarding/SecurityPreferencesScreen";
 import DashboardScreen from "../screens/dashboard/DashboardScreen";
 import CPDTrackerScreen from "../screens/cpd/CPDTrackerScreen";
+import ProfessionalStandardsScreen from "../screens/standards/ProfessionalStandardsScreen";
 
 // Create placeholder screens for routes that aren't implemented yet
 const PlaceholderScreen = ({ route }: any) => (
@@ -85,7 +86,7 @@ const AppNavigator = () => {
         />
         <Stack.Screen 
           name={ROUTES.Standards} 
-          component={PlaceholderScreen}
+          component={ProfessionalStandardsScreen}
         />
         <Stack.Screen 
           name={ROUTES.Profile} 

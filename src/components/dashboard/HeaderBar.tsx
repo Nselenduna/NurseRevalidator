@@ -50,19 +50,14 @@ const HeaderBar: React.FC<HeaderBarProps> = ({
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <View style={styles.container}>
         {/* Logo Section */}
-        <TouchableOpacity
-          style={styles.logoContainer}
-          onPress={handleLogoPress}
-          accessibilityRole="button"
-          accessibilityLabel="App logo"
-          accessibilityHint="Tap for heartbeat animation"
-        >
+        <View style={styles.logoContainer}>
           <StethoscopeIcon
             size={40}
             color={COLORS.white}
             pulseEnabled={true}
+            onEasterEggTrigger={handleLogoPress}
           />
-        </TouchableOpacity>
+        </View>
 
         {/* Greeting Section */}
         <View style={styles.greetingContainer}>
